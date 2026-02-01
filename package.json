@@ -1,0 +1,42 @@
+{
+  "name": "feedback-hub",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "cf:build": "npx @opennextjs/cloudflare build",
+    "preview": "npm run cf:build && npx @opennextjs/cloudflare preview",
+    "deploy": "npm run cf:build && npx @opennextjs/cloudflare deploy",
+    "db:create": "wrangler d1 create feedback-hub-db",
+    "db:migrate": "wrangler d1 execute feedback-hub-db --local --file=./migrations/0001_init.sql",
+    "db:migrate:remote": "wrangler d1 execute feedback-hub-db --remote --file=./migrations/0001_init.sql",
+    "db:seed": "wrangler d1 execute feedback-hub-db --local --file=./migrations/0002_seed.sql",
+    "db:seed:remote": "wrangler d1 execute feedback-hub-db --remote --file=./migrations/0002_seed.sql",
+    "db:alerts": "wrangler d1 execute feedback-hub-db --local --file=./migrations/0003_alerts.sql",
+    "db:alerts:remote": "wrangler d1 execute feedback-hub-db --remote --file=./migrations/0003_alerts.sql"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.378.0",
+    "next": "^15.1.12",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "recharts": "^2.12.7",
+    "tailwind-merge": "^2.3.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240512.0",
+    "@opennextjs/cloudflare": "^1.16.1",
+    "@types/node": "^20.12.12",
+    "@types/react": "^18.3.2",
+    "@types/react-dom": "^18.3.0",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.3",
+    "typescript": "^5.4.5",
+    "wrangler": "^4.61.1"
+  }
+}

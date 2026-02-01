@@ -1,0 +1,25 @@
+name = "feedback-hub"
+main = ".open-next/worker.js"
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
+workers_dev = true
+
+[assets]
+directory = ".open-next/assets"
+binding = "ASSETS"
+run_worker_first = false
+
+# D1 Database for storing feedback tickets
+[[d1_databases]]
+binding = "DB"
+database_name = "feedback-hub-db"
+database_id = "8deefeee-0e94-4f7e-8606-94b0571693ca"
+
+# Vectorize for finding related tickets
+[[vectorize]]
+binding = "VECTORIZE"
+index_name = "feedback-embeddings"
+
+# Workers AI for sentiment analysis, classification, and embeddings
+[ai]
+binding = "AI"
